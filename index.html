@@ -8,6 +8,86 @@
   <title>Tic-Tac-Toe</title>
 </head>
 <body>
-  <h1>Tic-Tac-Toe</h1>
+  <section class="wrapper">
+		<h1 class="header">TIC TAC TOE</h1>
+
+		<section class="entry">
+			<div class="entry__new">
+				<input class="entry__input" type="text" name="player" placeholder="Enter your name">
+				<a class="btn-mode" href="/">Create a new game</a>
+			</div>
+			<hr class="entry__divide">
+			<div class="entry__existing">
+				<div class="entry__name-wrap">
+					<input class="entry__input" type="text" name="player" placeholder="Enter your name">
+				</div>
+				<div class="entry__room-id-wrap">
+					<input class="entry__input" type="text" name="room" placeholder="Enter room ID">
+				</div>
+				<a class="btn-mode" href="/">Join an existing game</a>
+			</div>
+			<hr class="entry__divide">
+			<div class="entry__computer">
+				<a class="btn-comp btn-mode" href="/">Play with computer</a>
+			</div>
+		</section>
+
+		<section class="sides">
+			<h3 class="header">Select side</h3>
+			<table class="sides__table">
+				<tr>
+					<td class="sides__side sides__side--cross" data-side="X">
+						<div class="board__cross"></div>
+					</td>
+					<td class="sides__side sides__side--circle" data-side="O">
+						<div class="board__circle"></div>
+					</td>
+				</tr>
+			</table>
+		</section>
+
+		<main class="main-game">
+			<table class="points">
+				<tr class="points__titles">
+					<th class="points__title">Player</th>
+					<th class="points__title points__title--tie">Tie</th>
+					<th class="points__title">Bot</th>
+				</tr>
+				<tr class="points__values">
+					<td class="points__value points__value--player-x">0</td>
+					<td class="points__value points__value--tie">0</td>
+					<td class="points__value points__value--player-o">0</td>
+				</tr>
+			</table>
+	
+			<table class="board">
+				<tr class="board__row">
+					<td class="board__item" id="square-0"></td>
+					<td class="board__item" id="square-1"></td>
+					<td class="board__item" id="square-2"></td>
+				</tr>
+				<tr class="board__row">
+					<td class="board__item" id="square-3"></td>
+					<td class="board__item" id="square-4"></td>
+					<td class="board__item" id="square-5"></td>
+				</tr>
+				<tr class="board__row">
+					<td class="board__item" id="square-6"></td>
+					<td class="board__item" id="square-7"></td>
+					<td class="board__item" id="square-8"></td>
+				</tr>
+			</table>
+
+			<div class="winner">
+				<h1 class="winner__result">YOU LOSE</h1>
+				<button class="btn btn--new">New game</button>
+				<button class="btn btn--reset">Reset</button>
+			</div>
+	
+			<div class="buttons">
+				<button class="btn btn--leave">Leave</button>
+				<button class="btn btn--resign">Resign</button>
+			</div>
+		</main>
 </body>
 </html>
