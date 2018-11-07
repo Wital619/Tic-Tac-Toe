@@ -9,7 +9,7 @@
 </head>
 <body>
   <section class="wrapper">
-		<h1 class="header">TIC TAC TOE</h1>
+		<h1 class="header main-header">TIC TAC TOE</h1>
 
 		<section class="entry">
 			<div class="entry__new">
@@ -33,7 +33,7 @@
 		</section>
 
 		<section class="sides">
-			<h3 class="header">Select side</h3>
+			<h3 class="header header--unbordered">Choose side</h3>
 			<table class="sides__table">
 				<tr>
 					<td class="sides__side sides__side--cross" data-side="X">
@@ -43,7 +43,20 @@
 						<div class="board__circle"></div>
 					</td>
 				</tr>
-			</table>
+      </table>
+      <div class="game-mode">
+        <h1 class="header header--unbordered">Choose mode</h1>
+        <div class="game-mode__wrapper">
+          <div class="game-mode__mode game-mode__mode--first">
+            <input class="game-mode__input" id="same-game-mode" type="radio" name="game-mode" value="same" checked>
+            <label class="game-mode__label" for="same-game-mode">All following games play for one chosen side</label>
+          </div>
+          <div class="game-mode__mode game-mode__mode--second">
+            <input class="game-mode__input" id="changing-game-mode" type="radio" name="game-mode" value="changing">
+            <label class="game-mode__label" for="changing-game-mode">After the end of each game be able to change the side</label>
+          </div>
+        </div>
+      </div>
 		</section>
 
 		<main class="main-game">

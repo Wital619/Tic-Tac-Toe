@@ -1,8 +1,8 @@
 import Player from './Player';
-import {getEmptySquares, isWon, getBestBotMove, appendFigure} from './utils';
+import {getEmptySquares, isWon, getBestBotMove, appendFigure} from '../utils';
 
 export default class Game {
-  constructor (humanSide, botSide) {
+  constructor (humanSide, botSide, selectedGameMode) {
     this.$board = document.querySelector('.board');
     this.$pointsValues = document.querySelector('.points__values');
     this.$winner = document.querySelector('.winner');
@@ -12,16 +12,18 @@ export default class Game {
     this.humanPlayer = new Player(humanSide);
     this.botPlayer = new Player(botSide);
     this.tieScore = 0;
+    this.selectedGameMode = selectedGameMode;
 
     this.addElement = this.addElement.bind(this);
 
     this.$board.addEventListener('click', e => this.addElement(e));
 
     this.initButtons();
+    this.handleMovesTurn();
+  }
 
-    if (humanSide === 'O') {
-      this.makeMove(0, this.botPlayer.side);
-    }
+  isChangingGameMode () {
+    return this.selectedGameMode === 'changing' ? true : false;
   }
 
   initButtons () {
@@ -58,9 +60,16 @@ export default class Game {
     window.history.back();
   }
 
+  handleMovesTurn () {
+    if (this.humanPlayer.side === 'O') {
+      this.makeMove(0, this.botPlayer.side);
+    }
+  }
+
   newGame () {
     this.board = Array.from(Array(9).keys());
     this.resetSquares();
+    this.handleMovesTurn();
 
     this.$btnNew.disabled = true;
     this.$btnResign.disabled = true;
@@ -74,6 +83,7 @@ export default class Game {
     const squareId = e.target.id.slice(7);
 
     if (typeof this.board[squareId] === 'number') {
+
       if (!isWon(this.board, this.botPlayer.side) && !this.isTie()) {
         this.makeMove(squareId, this.humanPlayer.side);
       }
@@ -85,11 +95,8 @@ export default class Game {
   }
 
   makeMove (squareId, player) {		
-    if (typeof this.board[squareId] === 'number') {
-      this.board[squareId] = player;
-
-      appendFigure(squareId, player);
-    }
+    appendFigure(squareId, player);
+    this.board[squareId] = player;
 
     const gameWon = isWon(this.board, player);
 
@@ -98,6 +105,7 @@ export default class Game {
     }
 
     this.checkIfItFirstMove();
+    this.isTie();
   }
 
   declareWinner (winner) {

@@ -5,6 +5,7 @@
   transform: translate(-50%, -50%);
   width: 342px;
   border-radius: 10px;
+  overflow: hidden;
   border: 1px solid grey;
   background-color: #ccc;
 }
@@ -18,4 +19,8 @@
   text-align: center;
   border-bottom: 1px solid grey;
   color: grey;
+
+  &--unbordered {
+    border-bottom: none;
+  }
 }
