@@ -8,7 +8,7 @@ module.exports = {
   entry: ['./src/js/main.js'],
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -37,7 +37,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin('public'),
+    new CleanWebpackPlugin('dist'),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
@@ -46,7 +46,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: 'public',
+    contentBase: 'dist',
     overlay: true,
     open: true,
     openPage: 'index.html',
