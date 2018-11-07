@@ -1,5 +1,5 @@
 import Player from './Player';
-import {getEmptySquares, isWon, getBestBotMove, appendFigure} from '../utils';
+import {getEmptySquares, isWon, getBestBotMove, appendFigure} from './utils';
 
 export default class Game {
   constructor (humanSide, botSide, selectedGameMode) {
