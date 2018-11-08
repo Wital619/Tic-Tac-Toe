@@ -1,5 +1,5 @@
-import Player from './Player';
-import {getEmptySquares, isWon, getBestBotMove, appendFigure} from './utils';
+import Player from './player';
+import {getEmptySquares, isWon, getBestBotMove, appendFigure} from '../utils';
 
 export default class Game {
   constructor (humanSide, botSide, selectedGameMode) {
@@ -8,6 +8,7 @@ export default class Game {
     this.$winner = document.querySelector('.winner');
 
     this.board = Array.from(Array(9).keys());
+    this.isThereWinner = false;
 
     this.humanPlayer = new Player(humanSide);
     this.botPlayer = new Player(botSide);
@@ -68,6 +69,7 @@ export default class Game {
 
   newGame () {
     this.board = Array.from(Array(9).keys());
+    this.isThereWinner = false;
     this.resetSquares();
     this.handleMovesTurn();
 
@@ -83,39 +85,49 @@ export default class Game {
     const squareId = e.target.id.slice(7);
 
     if (typeof this.board[squareId] === 'number') {
+      this.makeMove(squareId, this.humanPlayer.side);
+      this.checkIfItFirstMove();
 
-      if (!isWon(this.board, this.botPlayer.side) && !this.isTie()) {
-        this.makeMove(squareId, this.humanPlayer.side);
+      const botSquareId = getBestBotMove(this.board, this.botPlayer.side);
+      this.makeMove(botSquareId, this.botPlayer.side);
+    }
+  }
+
+  makeMove (squareId, player) {
+    if (!this.isThereWinner) {
+      appendFigure(squareId, player);
+      this.board[squareId] = player;
+
+      this.checkIfThereIsResult(player);
+    }
+  }
+
+  checkIfThereIsResult (player) {
+    const winner = isWon(this.board, player);
+    const tie = this.isTie();
+
+    switch (winner || tie || true) {
+      case winner: {
+        this.isThereWinner = true;
+        this.declareWinner(winner.player);
+        break;
       }
-
-      if (!isWon(this.board, this.humanPlayer.side) && !this.isTie()) {
-        this.makeMove(getBestBotMove(this.board), this.botPlayer.side);
+      case tie: {
+        this.isThereWinner = true;
+        this.declareWinner('Tie!');
+        break;
       }
     }
   }
 
-  makeMove (squareId, player) {		
-    appendFigure(squareId, player);
-    this.board[squareId] = player;
-
-    const gameWon = isWon(this.board, player);
-
-    if (gameWon) {
-      this.declareWinner(gameWon.player);
-    }
-
-    this.checkIfItFirstMove();
-    this.isTie();
-  }
-
-  declareWinner (winner) {
+  declareWinner (player) {
     const $winner = document.querySelector('.winner__result');
 
-    if (winner === this.humanPlayer.side) {
+    if (player === this.humanPlayer.side) {
       this.humanPlayer.score++;
       this.$pointsValues.children[0].textContent = this.humanPlayer.score;
       $winner.textContent = 'YOU WON !';
-    } else if (winner === this.botPlayer.side) {
+    } else if (player === this.botPlayer.side) {
       this.botPlayer.score++;
       this.$pointsValues.children[2].textContent = this.botPlayer.score;
       $winner.textContent = 'YOU LOSE !';
@@ -160,12 +172,6 @@ export default class Game {
   }
 
   isTie () {
-    if (getEmptySquares(this.board).length === 0) {
-      this.declareWinner('Tie');
-
-      return true;
-    }
-
-    return false;
+    return getEmptySquares(this.board).length === 0;
   }
 }

@@ -1,5 +1,5 @@
-import Game from './Game';
-import GameMode from './GameMode';
+import Game from './game';
+import GameMode from './game-mode';
 
 export default class GameSide {
   constructor () {

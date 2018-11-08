@@ -1,5 +1,6 @@
-const playerX = 'X';
-const playerO = 'O';
+let humanPlayer = 'X';
+let botPlayer = 'O';
+
 const winCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -20,7 +21,7 @@ export function appendFigure (squareId, player) {
 
 function createFigure (player) {
   const $el = document.createElement('div');
-  $el.className = player === playerX ? 'board__cross' : 'board__circle';
+  $el.className = player === 'X' ? 'board__cross' : 'board__circle';
 
   return $el;
 }
@@ -46,17 +47,22 @@ export function getEmptySquares (board) {
   return board.filter(s => typeof s === 'number');
 }
 
-export function getBestBotMove (newBoard) {
-  return minimax(newBoard, playerO).index;
+export function getBestBotMove (board, player) {
+  if (player !== 'O') {
+    botPlayer = 'X';
+    humanPlayer = 'O';
+  } 
+
+  return minimax(board, botPlayer).index;
 }
 
-function minimax (newBoard, player) {
-  const emptySquares = getEmptySquares(newBoard);
+function minimax (board, player) {
+  const emptySquares = getEmptySquares(board);
   const moves = [];
 
-  if (isWon(newBoard, playerX)) {
+  if (isWon(board, humanPlayer)) {
     return { score: -10 };
-  } else if (isWon(newBoard, playerO)) {
+  } else if (isWon(board, botPlayer)) {
     return { score: 10 };
   } else if (emptySquares.length === 0) {
     return { score: 0 };
@@ -66,18 +72,18 @@ function minimax (newBoard, player) {
     const move = {};
     let result;
 
-    move.index = newBoard[emptySquares[i]];
-    newBoard[emptySquares[i]] = player;
+    move.index = board[emptySquares[i]];
+    board[emptySquares[i]] = player;
 
-    if (player === playerO) {
-      result = minimax(newBoard, playerX);
+    if (player === humanPlayer) {
+      result = minimax(board, botPlayer);
       move.score = result.score;
     } else {
-      result = minimax(newBoard, playerO);
+      result = minimax(board, humanPlayer);
       move.score = result.score;
     }
 
-    newBoard[emptySquares[i]] = move.index;
+    board[emptySquares[i]] = move.index;
 
     moves.push(move);
   }
@@ -85,7 +91,7 @@ function minimax (newBoard, player) {
   let bestMove;
   let bestScore;
 
-  if (player === playerO) {
+  if (player === botPlayer) {
     bestScore = -10000;
 
     for (let i = 0; i < moves.length; i++) {

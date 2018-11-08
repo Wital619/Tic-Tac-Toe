@@ -1,4 +1,4 @@
-import GameSide from './GameSide';
+import GameSide from './game-side';
 
 export default class Entry {
   constructor () {

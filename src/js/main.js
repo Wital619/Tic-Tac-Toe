@@ -1,4 +1,4 @@
 import '../scss/main.scss';
-import Entry from './Entry';
+import Entry from './classes/entry';
 
 new Entry();
