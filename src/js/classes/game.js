@@ -140,7 +140,7 @@ export default class Game {
   }
 
   declareWinner ({player, winArrayIndex}) {
-    this.handleScore();
+    this.handleScore(player);
 
     if (player && typeof winArrayIndex !== 'undefined') {
       this.fillWonSquares(player, winArrayIndex);
