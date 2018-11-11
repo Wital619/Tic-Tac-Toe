@@ -20,6 +20,10 @@
   border-bottom: 1px solid grey;
   color: grey;
 
+  &--main {
+    display: block;
+  }
+
   &--unbordered {
     border-bottom: none;
   }

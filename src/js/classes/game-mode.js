@@ -1,18 +1,35 @@
+import {hide, show} from '../utils';
+
 export default class GameMode {
   constructor () {
-    this.$gameModeInputs = document.querySelectorAll('.game-mode__input');
-    this.gameMode = 'same';
+    this.$modes = document.querySelector('.modes');
+    this.$modesInputs = document.querySelectorAll('.modes__input');
 
-    this.$gameModeInputs.forEach(input => {
-      input.addEventListener('change', e => this.selectGameMode(e));
-    });
+    this.selectGameMode = this.selectGameMode.bind(this);
+    this.initialize();
+
+    this.gameMode = 'same';
+  }
+
+  initialize () {
+    show(this.$modes);
+
+    this.$modesInputs.forEach(input => input.addEventListener('change', this.selectGameMode));
   }
 
   selectGameMode (e) {
     this.gameMode = e.target.value;
   }
 
+  cleanBeforeDestroy () {
+    hide(this.$modes);
+
+    this.$modesInputs.forEach(input => input.addEventListener('change', this.selectGameMode));
+  }
+
   getGameMode () {
+    this.cleanBeforeDestroy();
+
     return this.gameMode;
   }
 }

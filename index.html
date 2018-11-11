@@ -8,9 +8,7 @@
   <title>Tic-Tac-Toe</title>
 </head>
 <body>
-  <section class="wrapper">
-		<h1 class="header main-header">TIC TAC TOE</h1>
-
+  <div class="wrapper">
 		<section class="entry">
 			<div class="entry__new">
 				<input class="entry__input" type="text" name="player" placeholder="Enter your name">
@@ -32,32 +30,31 @@
 			</div>
 		</section>
 
-		<section class="sides">
-			<h3 class="header header--unbordered">Choose side</h3>
-			<table class="sides__table">
-				<tr>
-					<td class="sides__side sides__side--cross" data-side="X">
-						<div class="board__cross"></div>
-					</td>
-					<td class="sides__side sides__side--circle" data-side="O">
-						<div class="board__circle"></div>
-					</td>
-				</tr>
-      </table>
-      <div class="game-mode">
-        <h1 class="header header--unbordered">Choose mode</h1>
-        <div class="game-mode__wrapper">
-          <div class="game-mode__mode game-mode__mode--first">
-            <input class="game-mode__input" id="same-game-mode" type="radio" name="game-mode" value="same" checked>
-            <label class="game-mode__label" for="same-game-mode">All following games play for one chosen side</label>
-          </div>
-          <div class="game-mode__mode game-mode__mode--second">
-            <input class="game-mode__input" id="changing-game-mode" type="radio" name="game-mode" value="changing">
-            <label class="game-mode__label" for="changing-game-mode">After the end of each game be able to change the side</label>
-          </div>
+		<div class="sides">
+      <h3 class="header header--unbordered">Choose side</h3>
+      <div class="sides__wrapper">
+        <div class="sides__side" data-side="X">
+          <div class="cross-element"></div>
+        </div>
+        <div class="sides__side" data-side="O">
+          <div class="circle-element"></div>
         </div>
       </div>
-		</section>
+    </div>
+
+    <div class="modes">
+      <h3 class="header header--unbordered">Choose mode</h1>
+      <div class="modes__wrapper">
+        <div class="modes__mode">
+          <input class="modes__input" id="same-mode" type="radio" name="mode" value="same" checked>
+          <label class="modes__label" for="same-mode">All following games play for one chosen side</label>
+        </div>
+        <div class="modes__mode">
+          <input class="modes__input" id="changing-mode" type="radio" name="mode" value="changing">
+          <label class="modes__label" for="changing-mode">After the end of each game be able to change the side</label>
+        </div>
+      </div>
+    </div>
 
 		<main class="main-game">
 			<table class="points">

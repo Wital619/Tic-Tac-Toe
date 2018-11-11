@@ -1,21 +1,19 @@
-import GameSide from './game-side';
+import GameWithComputer from './game-with-computer';
+import {hide, show} from '../utils';
 
 export default class Entry {
   constructor () {
     this.$playWithCompBtn = document.querySelector('.btn-comp');
-    this.$mainHeader = document.querySelector('.main-header');
     this.$entry = document.querySelector('.entry');
-    this.$sidesBlock = document.querySelector('.sides');
 
-    this.$mainHeader.style.display = 'none';
+    show(this.$entry);
 
     this.$playWithCompBtn.addEventListener('click', e => this.playWithComputer(e));
   }
 
   playWithComputer () {    
-    this.gameSide = new GameSide();
+    new GameWithComputer();
 
-    this.$sidesBlock.style.display = 'block';
-    this.$entry.style.display = 'none';
+    hide(this.$entry);
   }
 }

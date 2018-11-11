@@ -1,30 +1,34 @@
 import Player from './player';
-import {getEmptySquares, isWon, getBestBotMove, appendFigure} from '../utils';
+import GameSide from './game-side';
+import {appendFigure, hide, show} from '../utils';
+import {getEmptySquares, isWon, getBestBotMove, getWinCombo} from '../algorithm';
 
 export default class Game {
   constructor (humanSide, botSide, selectedGameMode) {
     this.$board = document.querySelector('.board');
+    this.$squares = document.querySelectorAll('.board__item');
     this.$pointsValues = document.querySelector('.points__values');
     this.$winner = document.querySelector('.winner');
-
-    this.board = Array.from(Array(9).keys());
-    this.isThereWinner = false;
+    this.$mainGame = document.querySelector('.main-game');
 
     this.humanPlayer = new Player(humanSide);
     this.botPlayer = new Player(botSide);
     this.tieScore = 0;
-    this.selectedGameMode = selectedGameMode;
+    this.isItChangingMode = selectedGameMode === 'changing';
 
     this.addElement = this.addElement.bind(this);
+    show(this.$mainGame);
 
-    this.$board.addEventListener('click', e => this.addElement(e));
-
+    this.initialize();
     this.initButtons();
-    this.handleMovesTurn();
+    this.handleWhenBotMovesFirst();
   }
 
-  isChangingGameMode () {
-    return this.selectedGameMode === 'changing' ? true : false;
+  initialize () {
+    this.board = Array.from(Array(9).keys());
+    this.isThereWinner = false;
+
+    this.$board.addEventListener('click', this.addElement);
   }
 
   initButtons () {
@@ -35,14 +39,40 @@ export default class Game {
 
     this.$btnResign.disabled = true;
 
-    this.$btnNew.addEventListener('click', () => this.newGame());
+    this.$btnNew.addEventListener('click', () => this.handleNewGame());
     this.$btnReset.addEventListener('click', () => this.resetGameScore());
-    this.$btnResign.addEventListener('click', () =>
-      this.declareWinner(this.botPlayer.side)
+    this.$btnLeave.addEventListener('click', () => location.reload());
+    this.$btnResign.addEventListener('click', 
+      () => this.declareWinner({ player: this.botPlayer.side })
     );
-    this.$btnLeave.addEventListener('click', () =>
-      this.leaveGame(this.botPlayer.side)
-    );
+  }
+
+  handleWhenBotMovesFirst () {
+    if (this.humanPlayer.side === 'O') {
+      const correctFirstMoves = [0, 2, 6, 8];
+      const randomIndex = Math.floor(Math.random() * 4);
+
+      this.makeMove(correctFirstMoves[randomIndex], this.botPlayer.side);
+    }
+  }
+
+  handleNewGame () {
+    if (this.isItChangingMode) {
+      const gameSide = new GameSide(true);
+      
+      hide(this.$mainGame);
+
+      gameSide.selectSideByPromise()
+        .then(data => {
+          this.humanPlayer.side = data.humanSide;
+          this.botPlayer.side = data.botSide;
+          
+          show(this.$mainGame);
+          this.newGame();
+        });
+    } else {
+      this.newGame();
+    }
   }
 
   resetGameScore () {
@@ -57,28 +87,17 @@ export default class Game {
     this.$btnReset.disabled = true;
   }
 
-  leaveGame () {
-    window.history.back();
-  }
-
-  handleMovesTurn () {
-    if (this.humanPlayer.side === 'O') {
-      this.makeMove(0, this.botPlayer.side);
-    }
-  }
-
   newGame () {
-    this.board = Array.from(Array(9).keys());
-    this.isThereWinner = false;
+    this.initialize();
     this.resetSquares();
-    this.handleMovesTurn();
+    this.handleWhenBotMovesFirst();
 
     this.$btnNew.disabled = true;
     this.$btnResign.disabled = true;
     this.$btnReset.disabled = true;
 
-    this.$board.style.display = 'table';
-    this.$winner.style.display = 'none';
+    show(this.$board, 'table');
+    hide(this.$winner);
   }
 
   addElement (e) {
@@ -86,7 +105,7 @@ export default class Game {
 
     if (typeof this.board[squareId] === 'number') {
       this.makeMove(squareId, this.humanPlayer.side);
-      this.checkIfItFirstMove();
+      this.checkIfItFirstPlayerMove();
 
       const botSquareId = getBestBotMove(this.board, this.botPlayer.side);
       this.makeMove(botSquareId, this.botPlayer.side);
@@ -109,18 +128,44 @@ export default class Game {
     switch (winner || tie || true) {
       case winner: {
         this.isThereWinner = true;
-        this.declareWinner(winner.player);
+        this.declareWinner(winner);
         break;
       }
       case tie: {
         this.isThereWinner = true;
-        this.declareWinner('Tie!');
+        this.declareWinner('');
         break;
       }
     }
   }
 
-  declareWinner (player) {
+  declareWinner ({player, winArrayIndex}) {
+    this.handleScore();
+
+    if (player && typeof winArrayIndex !== 'undefined') {
+      this.fillWonSquares(player, winArrayIndex);
+    }
+
+    this.resetToInitialSettings();
+  }
+
+  resetToInitialSettings () {
+    this.$board.removeEventListener('click', this.addElement);
+
+    this.$btnLeave.disabled = true;
+    this.$btnResign.disabled = true;
+
+    setTimeout(() => {
+      hide(this.$board);
+      show(this.$winner, 'flex');
+
+      this.$btnNew.disabled = false;
+      this.$btnLeave.disabled = false;
+      this.$btnReset.disabled = false;
+    }, 500);
+  }
+
+  handleScore (player) {
     const $winner = document.querySelector('.winner__result');
 
     if (player === this.humanPlayer.side) {
@@ -136,33 +181,30 @@ export default class Game {
       this.$pointsValues.children[1].textContent = this.tieScore;
       $winner.textContent = 'TIE !';
     }
-
-    this.$board.removeEventListener('click', this.addElement);
-
-    this.$btnLeave.disabled = true;
-    this.$btnResign.disabled = true;
-
-    setTimeout(() => {
-      this.$board.style.display = 'none';
-      this.$winner.style.display = 'flex';
-
-      this.$btnNew.disabled = false;
-      this.$btnLeave.disabled = false;
-      this.$btnReset.disabled = false;
-    }, 500);
   }
 
-  resetSquares () {
-    const $squares = document.querySelectorAll('.board__item');
+  fillWonSquares (player, winArrayIndex) {
+    const wonIndexes = getWinCombo(winArrayIndex);
 
-    $squares.forEach($square => {
-      if ($square.firstElementChild) {
-        $square.removeChild($square.firstElementChild);
+    this.$squares.forEach($square => {
+      const squareId = parseInt($square.id.slice(7), 10);
+
+      if (wonIndexes.includes(squareId)) {
+        $square.style.backgroundColor = player === this.humanPlayer.side ? 'green' : 'red';
       }
     });
   }
 
-  checkIfItFirstMove () {
+  resetSquares () {
+    this.$squares.forEach($square => {
+      if ($square.firstElementChild) {
+        $square.removeChild($square.firstElementChild);
+        $square.style.removeProperty('background-color');
+      }
+    });
+  }
+
+  checkIfItFirstPlayerMove () {
     const movesCount = this.board.filter(side => side === this.humanPlayer.side);
 
     if (movesCount.length === 1) {

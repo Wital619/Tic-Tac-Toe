@@ -40,27 +40,28 @@
       background-color: #bfbfbf;
     }
   }
+}
 
-  &__circle {
-    width: 75%;
-    height: 75%;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 1px solid #000;
-  }
+.circle-element {
+  width: 75%;
+  height: 75%;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
 
-  &__cross {
-    background-color: #000;
+.cross-element {
+  width: 100%;
+  background-color: #000;
+  height: 1px;
+  transform: rotate(45deg);
+
+  &::after {
+    content: "";
+    display: block;
     height: 1px;
-    transform: rotate(45deg);
-
-    &::after {
-      content: "";
-      display: block;
-      height: 1px;
-      background-color: #000;
-      transform: rotate(90deg);
-    }
+    background-color: #000;
+    transform: rotate(90deg);
   }
 }
 
@@ -84,68 +85,4 @@
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
-}
-
-.btn {
-  width: 48%;
-  padding: 9px 20px;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 5px;
-  border-bottom: 2px solid;
-  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
-
-  &:active {
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  }
-
-  &:disabled {
-    border: 1px solid #999;
-    box-shadow: none;
-    background-color: #ccc;
-    color: #666;
-    cursor: default;
-
-    &:hover {
-      background-color: #ccc;
-    }
-  }
-
-  &--leave {
-    background-color: orange;
-    border-bottom-color: #cc8400;
-
-    &:hover {
-      background-color: #e69500;
-    }
-  }
-
-  &--resign {
-    background-color: red;
-    border-bottom-color: #c00;
-
-    &:hover {
-      background-color: #e60000;
-    }
-  }
-
-  &--new {
-    margin-bottom: 10px;
-    background-color: blue;
-    border-bottom-color: #00c;
-
-    &:hover {
-      background-color: #0000e6;
-    }
-  }
-
-  &--reset {
-    margin-bottom: 30px;
-    background-color: green;
-    border-bottom-color: #004d00;
-
-    &:hover {
-      background-color: #006700;
-    }
-  }
 }
