@@ -1,8 +1,10 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wrapper {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 342px;
   border-radius: 10px;
   overflow: hidden;

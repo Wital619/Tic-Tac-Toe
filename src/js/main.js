@@ -1,4 +1,4 @@
 import '../scss/main.scss';
-import GameSide from './classes/game-side';
+import Entry from './classes/entry';
 
-new GameSide(false);
+new Entry();

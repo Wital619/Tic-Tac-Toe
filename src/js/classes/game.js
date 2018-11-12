@@ -123,7 +123,7 @@ export default class Game {
 
   checkIfThereIsResult (player) {
     const winner = isWon(this.board, player);
-    const tie = this.isTie();
+    const tie = getEmptySquares(this.board).length === 0;
 
     switch (winner || tie || true) {
       case winner: {
@@ -211,9 +211,5 @@ export default class Game {
       this.$btnResign.disabled = false;
       this.$btnLeave.disabled = true;
     }
-  }
-
-  isTie () {
-    return getEmptySquares(this.board).length === 0;
   }
 }
