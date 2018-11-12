@@ -55,7 +55,12 @@ After merge changes into master branch the app will be automatically deployed to
 
 ## Contribution guide
 
-[Please check guide](https://github.com/Wital619/tic-tac-toe/blob/master/CONTRIBUTION%20GUIDE.md)
+[Please check guide](https://github.com/Wital619/tic-tac-toe/blob/master/.github/CONTRIBUTIONG.md)
+
+## Issue & Pull Request templates
+
+  * [Issue template](https://github.com/Wital619/tic-tac-toe/blob/master/.github/ISSUE_TEMPLATE.md)
+  * [Pull Request template](https://github.com/Wital619/tic-tac-toe/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 ## Mockups
 
