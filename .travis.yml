@@ -21,7 +21,7 @@ script:
   - npm run lint
   - npm run stylelint
   - npm run test
-  - npm run build
+  - npm run serve
   
 deploy:
   provider: pages
