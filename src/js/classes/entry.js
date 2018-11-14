@@ -1,4 +1,3 @@
-/*global io */
 import GameSide from './game-side';
 import SocketPlayer from './socket-player';
 import SocketGame from './socket-game';
@@ -18,14 +17,14 @@ export default class Entry {
     this.$secondPlayerName = document.querySelector('.entry__input--second-player');
     this.$inputRoomId = document.querySelector('.entry__input--room-id');
 
-    this.socket = io.connect('http://localhost:5000');
+    // this.socket = io.connect('http://localhost:5000');
     this.game = null;
     this.player = null;
     this.playerX = 'X';
     this.playerO = 'O';
 
     this.initialize();
-    this.initSocketEvents();
+    // this.initSocketEvents();
   }
 
   initialize () {

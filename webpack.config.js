@@ -1,6 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 
@@ -10,6 +11,7 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
@@ -43,7 +45,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html')
-    })
+    }),
+    new WorkboxPlugin.GenerateSW()
   ],
   devServer: {
     historyApiFallback: true,
