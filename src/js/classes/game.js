@@ -1,7 +1,7 @@
 import Player from './player';
 import GameSide from './game-side';
 import {appendFigure, hide, show} from '../utils';
-import {getEmptySquares, isWon, getBestBotMove, getWinCombo} from '../algorithm';
+import {getEmptySquares, checkWinner, getBestBotMove, getWinCombo} from '../algorithm';
 
 export default class Game {
   constructor (humanSide, botSide, selectedGameMode) {
@@ -122,7 +122,7 @@ export default class Game {
   }
 
   checkIfThereIsResult (player) {
-    const winner = isWon(this.board, player);
+    const winner = checkWinner(this.board, player);
     const tie = getEmptySquares(this.board).length === 0;
 
     switch (winner || tie || true) {

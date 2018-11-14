@@ -16,16 +16,16 @@ export function getWinCombo (index) {
   return winCombos[index];
 }
 
-export function isWon (board, player) {
+export function checkWinner (board, playerSide) {
   const playerMoves = board.reduce((a, e, i) => {
-    return e === player ? a.concat(i) : a;
+    return e === playerSide ? a.concat(i) : a;
   }, []);
 
   let gameWon = null;
 
   for (const [winArrayIndex, winArray] of winCombos.entries()) {
     if (winArray.every(elem => playerMoves.includes(elem))) {
-      gameWon = { winArrayIndex, player };
+      gameWon = { winArrayIndex, playerSide };
       break;
     }
   }
@@ -53,9 +53,9 @@ function minimax (board, player) {
   const emptySquares = getEmptySquares(board);
   const moves = [];
 
-  if (isWon(board, humanPlayer)) {
+  if (checkWinner(board, humanPlayer)) {
     return { score: -10 };
-  } else if (isWon(board, botPlayer)) {
+  } else if (checkWinner(board, botPlayer)) {
     return { score: 10 };
   } else if (emptySquares.length === 0) {
     return { score: 0 };

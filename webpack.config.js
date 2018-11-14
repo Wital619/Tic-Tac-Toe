@@ -46,9 +46,19 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: 'dist',
+    historyApiFallback: true,
     overlay: true,
     open: true,
+    host: 'localhost',
+    port: 3000,
+    contentBase: 'dist',
     openPage: 'index.html',
+    proxy: {
+      '/api': {
+        target: 'ws://localhost:5000',
+        ws: true,
+        secure: false
+      },
+    },
   }
 };

@@ -1,2 +1,3 @@
 node_modules
 stylelint.config.js
+src/js/assets/socket.io.js

@@ -1,4 +1,5 @@
-import '../scss/main.scss';
 import Entry from './classes/entry';
 
-new Entry();
+import '../scss/main.scss';
+
+document.addEventListener('DOMContentLoaded', () => new Entry());
