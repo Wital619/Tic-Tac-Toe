@@ -30,7 +30,7 @@
 			</div>
 		</section>
 
-		<div class="sides">
+		<section class="sides">
       <h3 class="header header--unbordered">Choose side</h3>
       <div class="sides__wrapper">
         <div class="sides__side" data-side="X">
@@ -40,9 +40,9 @@
           <div class="circle-element"></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="modes">
+    <section class="modes">
       <h3 class="header header--unbordered">Choose mode</h1>
       <div class="modes__wrapper">
         <div class="modes__mode">
@@ -54,21 +54,23 @@
           <label class="modes__label" for="changing-mode">After the end of each game be able to change the side</label>
         </div>
       </div>
-    </div>
+    </section>
 
 		<main class="main-game">
+      <section class="info"></section>
+
 			<table class="points">
 				<tr class="points__titles">
-					<th class="points__title">Player</th>
+					<th class="points__title points__title--player-x" data-side="X">-</th>
 					<th class="points__title points__title--tie">Tie</th>
-					<th class="points__title">Bot</th>
+					<th class="points__title" data-side="O">-</th>
 				</tr>
 				<tr class="points__values">
-					<td class="points__value points__value--player-x">0</td>
-					<td class="points__value points__value--tie">0</td>
-					<td class="points__value points__value--player-o">0</td>
+					<td class="points__value points__value--player-x" data-side="X">0</td>
+					<td class="points__value points__value--tie" data-side="tie">0</td>
+					<td class="points__value points__value--player-o" data-side="O">0</td>
 				</tr>
-			</table>
+      </table>
 	
 			<table class="board">
 				<tr class="board__row">
@@ -88,16 +90,19 @@
 				</tr>
 			</table>
 
-			<div class="winner">
-				<h1 class="winner__result">YOU LOSE</h1>
+			<section class="winner">
+				<h1 class="winner__result"></h1>
 				<button class="btn btn--new">New game</button>
 				<button class="btn btn--reset">Reset</button>
-			</div>
+			</section>
 	
-			<div class="buttons">
+			<section class="buttons">
 				<button class="btn btn--leave">Leave</button>
 				<button class="btn btn--resign">Resign</button>
-			</div>
-		</main>
+			</section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  </div>
 <script type="text/javascript" src="main.js"></script></body>
 </html>

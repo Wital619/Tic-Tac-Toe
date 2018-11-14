@@ -6,9 +6,9 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  height: 100%; }
 
 body {
   font: 16px/1 Arial, sans-serif;
@@ -215,6 +215,7 @@ body {
   padding: 15px; }
 
 .points {
+  display: none;
   width: 100%;
   margin-bottom: 15px;
   border-collapse: collapse;
@@ -227,6 +228,12 @@ body {
     border: 1px solid #000; }
     .points__title--tie, .points__value--tie {
       width: 20%; }
+
+.info {
+  display: none;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 300; }
 
 .board {
   width: 100%;
