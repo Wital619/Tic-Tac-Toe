@@ -164,6 +164,15 @@ body {
   .btn:active {
     -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); }
+  .btn:disabled {
+    border: 1px solid #999;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: #ccc;
+    color: #666;
+    cursor: default; }
+    .btn:disabled:hover {
+      background-color: #ccc; }
   .btn--leave {
     background-color: orange;
     border-bottom-color: #cc8400; }
@@ -211,7 +220,6 @@ body {
   padding: 15px; }
 
 .points {
-  display: none;
   width: 100%;
   margin-bottom: 15px;
   border-collapse: collapse;
