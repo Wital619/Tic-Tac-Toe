@@ -139,11 +139,11 @@ export default class Game {
     }
   }
 
-  declareWinner ({player, winArrayIndex}) {
-    this.handleScore(player);
+  declareWinner ({playerSide, winArrayIndex}) {
+    this.handleScore(playerSide);
 
-    if (player && typeof winArrayIndex !== 'undefined') {
-      this.fillWonSquares(player, winArrayIndex);
+    if (playerSide && typeof winArrayIndex !== 'undefined') {
+      this.fillWonSquares(playerSide, winArrayIndex);
     }
 
     this.resetToInitialSettings();

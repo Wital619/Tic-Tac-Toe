@@ -11,6 +11,18 @@
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
 
+  &:disabled {
+    border: 1px solid #999;
+    box-shadow: none;
+    background-color: #ccc;
+    color: #666;
+    cursor: default;
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+
   &--leave {
     background-color: orange;
     border-bottom-color: #cc8400;
