@@ -43,7 +43,7 @@ export default class Game {
     this.$btnReset.addEventListener('click', () => this.resetGameScore());
     this.$btnLeave.addEventListener('click', () => location.reload());
     this.$btnResign.addEventListener('click', 
-      () => this.declareWinner({ player: this.botPlayer.side })
+      () => this.declareWinner({ playerSide: this.botPlayer.side })
     );
   }
 
