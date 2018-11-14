@@ -10,6 +10,9 @@ export default class Entry {
     this.$btnJoin = document.querySelector('.btn-join');
     this.$playWithCompBtn = document.querySelector('.btn-comp');
     this.$entry = document.querySelector('.entry');
+
+    this.$playWithHumanBtn.disabled = true;
+    this.$btnJoin.disabled = true;
     
     this.$firstPlayerName = document.querySelector('.entry__input--first-player');
     this.$secondPlayerName = document.querySelector('.entry__input--second-player');
