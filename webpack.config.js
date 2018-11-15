@@ -1,4 +1,5 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -42,6 +43,10 @@ module.exports = (env, { mode }) => {
     },
     plugins: [
       new CleanWebpackPlugin('dist'),
+      new CopyWebpackPlugin([
+        { from: './manifest.json', to: './' },
+        { from: './src/icons/', to: './icons/' },
+      ]),
       new MiniCssExtractPlugin({
         filename: 'styles.css'
       }),

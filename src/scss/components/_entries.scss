@@ -15,6 +15,10 @@
     }
   }
 
+  &__label {
+    visibility: hidden;
+  }
+
   &__divide {
     margin: 15px 0;
   }

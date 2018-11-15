@@ -1,0 +1,22 @@
+{
+  "short_name": "X-O",
+  "name": "Tic-Tac-Toe",
+  "icons": [
+    {
+      "src": "/icons/tictactoe-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/tictactoe-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=a2hs",
+  "background_color": "grey",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/tic-tac-toe/",
+  "theme_color": "#ccc"
+}
