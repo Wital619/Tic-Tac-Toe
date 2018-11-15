@@ -7,17 +7,18 @@
   "description": "This is a Tic-Tac-Toe game, written in pure javascript",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm run build && npm run start",
     "start": "node index.js",
     "dev": "webpack-dev-server -d",
     "build": "webpack -d",
     "serve": "webpack -p",
-    "test": "echo 'tests temporary disabled'; exit 0",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "cover": "jest --coverage",
     "lint": "eslint ./src",
     "lint:watch": "esw --watch",
     "stylelint": "stylelint ./src/**/*.scss",
     "precommit": "npm run lint && npm run stylelint",
-    "prepush": "echo 'tests temporary disabled'; exit 0"
+    "prepush": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
   "homepage": "https://github.com/Wital619/tic-tac-toe#readme",
   "devDependencies": {
     "autoprefixer": "^9.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
@@ -58,5 +61,20 @@
   "dependencies": {
     "express": "^4.16.4",
     "socket.io": "^2.1.1"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }

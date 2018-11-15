@@ -17,7 +17,7 @@ export function appendFigure (squareId, player) {
   $square.appendChild($element);
 }
 
-function createFigure (player) {
+export function createFigure (player) {
   const $el = document.createElement('div');
   $el.className = player === 'X' ? 'cross-element' : 'circle-element';
 

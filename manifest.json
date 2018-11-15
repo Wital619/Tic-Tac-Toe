@@ -3,20 +3,20 @@
   "name": "Tic-Tac-Toe",
   "icons": [
     {
-      "src": "/icons/tictactoe-192x192.png",
+      "src": "icons/tictactoe-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icons/tictactoe-512x512.png",
+      "src": "icons/tictactoe-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "/?utm_source=a2hs",
+  "start_url": "/tic-tac-toe/index.html",
   "background_color": "grey",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/tic-tac-toe/",
+  "scope": "tic-tac-toe/",
   "theme_color": "#ccc"
 }

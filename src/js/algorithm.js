@@ -13,7 +13,11 @@ const winCombos = [
 ];
 
 export function getWinCombo (index) {
-  return winCombos[index];
+  if (index < 0 || index > 7) {
+    throw new Error('Index must be from 0 to 7 !');
+  }
+
+  return winCombos[index];  
 }
 
 export function checkWinner (board, playerSide) {
