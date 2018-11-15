@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#ccc">
+  <link rel="manifest" href="manifest.json">
   <title>Tic-Tac-Toe</title>
 <link href="styles.css" rel="stylesheet"></head>
 <body>
   <div class="wrapper">
 		<section class="entry">
 			<div class="entry__new">
-				<input class="entry__input entry__input--first-player" type="text" name="player" placeholder="Enter your name">
+        <input class="entry__input entry__input--first-player" 
+          type="text" name="player" aria-label="first-player" placeholder="Enter your name">
 				<button class="btn-mode btn-create">Create a new game</button>
 			</div>
 			<hr class="entry__divide">
 			<div class="entry__existing">
 				<div class="entry__name-wrap">
-					<input class="entry__input entry__input--second-player" type="text" name="player" placeholder="Enter your name">
+          <input class="entry__input entry__input--second-player" 
+            type="text" aria-label="second-player" name="player" placeholder="Enter your name">          
 				</div>
 				<div class="entry__room-id-wrap">
-					<input class="entry__input entry__input--room-id" type="text" name="room" placeholder="Enter room ID">
+          <input class="entry__input entry__input--room-id" 
+            type="text" aria-label="room-id" name="room" placeholder="Enter room ID">
 				</div>
 				<button class="btn-mode btn-join">Join an existing game</button>
 			</div>
@@ -29,7 +34,6 @@
 				<button class="btn-mode btn-comp">Play with computer</button>
 			</div>
 		</section>
-
 		<section class="sides">
       <h3 class="header header--unbordered">Choose side</h3>
       <div class="sides__wrapper">
@@ -41,7 +45,6 @@
         </div>
       </div>
     </section>
-
     <section class="modes">
       <h3 class="header header--unbordered">Choose mode</h1>
       <div class="modes__wrapper">
@@ -55,10 +58,8 @@
         </div>
       </div>
     </section>
-
 		<main class="main-game">
       <section class="info"></section>
-
 			<table class="points">
 				<tr class="points__titles">
 					<th class="points__title points__title--player-x" data-side="X">Player</th>
@@ -71,7 +72,6 @@
 					<td class="points__value points__value--player-o" data-side="O">0</td>
 				</tr>
       </table>
-	
 			<table class="board">
 				<tr class="board__row">
 					<td class="board__item" id="square-0"></td>
@@ -89,13 +89,11 @@
 					<td class="board__item" id="square-8"></td>
 				</tr>
 			</table>
-
 			<section class="winner">
 				<h1 class="winner__result"></h1>
 				<button class="btn btn--new">New game</button>
 				<button class="btn btn--reset">Reset</button>
 			</section>
-	
 			<section class="buttons">
 				<button class="btn btn--leave">Leave</button>
 				<button class="btn btn--resign">Resign</button>
