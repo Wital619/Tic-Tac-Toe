@@ -1,3 +1,4 @@
+// /*global io*/
 import GameSide from './game-side';
 import SocketPlayer from './socket-player';
 import SocketGame from './socket-game';
@@ -12,11 +13,12 @@ export default class Entry {
 
     this.$playWithHumanBtn.disabled = true;
     this.$btnJoin.disabled = true;
-    
+
     this.$firstPlayerName = document.querySelector('.entry__input--first-player');
     this.$secondPlayerName = document.querySelector('.entry__input--second-player');
     this.$inputRoomId = document.querySelector('.entry__input--room-id');
 
+    // this.socket = io.connect('https://tic-tac-toe-wital619.herokuapp.com/');
     // this.socket = io.connect('http://localhost:5000');
     this.game = null;
     this.player = null;

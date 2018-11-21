@@ -6,6 +6,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
+io.origins('*:*');
+
 let rooms = 0;
 
 app.use(express.static('dist'));

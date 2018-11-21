@@ -109,7 +109,7 @@ export default class SocketGame {
     return setTimeout(() => {
       this.socket.disconnect();
       location.reload();
-    }, 500);
+    }, 1500);
   }
 
   emitAnotherPlayer (result) {

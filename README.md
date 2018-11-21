@@ -8,7 +8,8 @@ The main functionality:
 - Play with the computer
 - Play with a friend in real time
 
-[Demo](https://wital619.github.io/tic-tac-toe/)
+[Demo](https://wital619.github.io/tic-tac-toe/) on the github pages (without the ability to play with a friend)
+[Demo](https://tic-tac-toe-wital619.herokuapp.com/) on the heroku (with the ability to play with a friend)
 
 # Tech stack
  - HTML

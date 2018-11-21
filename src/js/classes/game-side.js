@@ -1,6 +1,6 @@
 import Game from './game';
 import GameMode from './game-mode';
-import {hide, show} from '../utils';
+import {hide, show, replacePlayerSide} from '../utils';
 
 export default class GameSide {
   constructor (isItChangingMode = false) {
@@ -38,7 +38,7 @@ export default class GameSide {
         $side.addEventListener('click', e => {
           const selectedSide = e.currentTarget.getAttribute('data-side');
           const humanSide = selectedSide;
-          const botSide = selectedSide === 'X' ? 'O' : 'X';
+          const botSide = replacePlayerSide('X');
 
           hide(this.$sidesParent);
           resolve({ humanSide, botSide });      
