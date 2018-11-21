@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "7ae0814dace301bc61e8",
+    "revision": "5522d4410bb7da9a0fe3",
     "url": "styles.css"
   },
   {
-    "revision": "b455510629b67cf2b3c182b82a80a30a",
+    "revision": "65758a874008c966e40a3350f6d6a43d",
     "url": "index.html"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "icons/favicon-16x16.png"
   },
   {
-    "revision": "7ae0814dace301bc61e8",
+    "revision": "5522d4410bb7da9a0fe3",
     "url": "bundle.js"
   }
 ];
