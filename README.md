@@ -5,11 +5,8 @@ The audience of the project is any, even children can easily play this game.
 The project was done to give players a chance to demonstrate their skills in thinking through and analyzing moves or just to have fun, figuring out who is cooler.
 
 The main functionality:
-- Play with the computer
-- Play with a friend in real time
-
-[Demo](https://wital619.github.io/tic-tac-toe/) on the github pages (without the ability to play with a friend)
-[Demo](https://tic-tac-toe-wital619.herokuapp.com/) on the heroku (with the ability to play with a friend)
+- Play with the computer - see [demo](https://wital619.github.io/tic-tac-toe/) on the github pages
+- Play with a friend in real time - see [demo](https://tic-tac-toe-wital619.herokuapp.com/) on the heroku
 
 # Tech stack
  - HTML
