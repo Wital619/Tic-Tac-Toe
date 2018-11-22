@@ -62,7 +62,7 @@ After merge changes into master branch the app will be automatically deployed to
 
 ## Mockups
 
-[Wireframe mockup](https://wireframepro.mockflow.com/view/Me990f544878e6d7ede961f6f97af97be1539629871444#/page/416705f7b0bc4e448a9462b99379b5ae)
+![Wireframe mockup](https://i.imgur.com/HnbVqlx.png)
 
 ## Authors
 
